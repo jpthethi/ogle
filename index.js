@@ -5,6 +5,7 @@ var path = require('path');
 var server = require('http').createServer(app);
 var config = require("./config/environment");
 var bodyParser = require('body-parser')
+var wss = new require('ws').Server({ server: server , path : "/"});
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -38,6 +39,21 @@ app.use('/api', apiRouter);
 app.use('/', require('./routes/pages/main'));
 apiRouter.use('/', require('./routes/api/main'));
 
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+    wss.broadcast(message);
+  });
+});
+
+wss.broadcast = function broadcast(data) {
+  wss.clients.forEach(function each(client) {
+    client.send(data);
+  });
+};
+
 server.listen(config.port, function () {
   logger.info('Serving App on port ' + server.address().port)
 });
+
+exports.broadcast =  wss.broadcast;

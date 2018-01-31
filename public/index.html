@@ -1,0 +1,30 @@
+<html>
+   <head>
+     <script src="/plugins/jquery/dist/jquery.min.js"></script>
+     <script>
+       function show(obj){
+         console.log(obj);
+         $("#recognized")[0].innerHTML = obj;
+         $("#ifr")[0].src = "https://en.wikipedia.org/wiki/Special:Search?search="+obj
+       }
+
+       var ws = new WebSocket("ws://"+ window.location.hostname + ":3030/");
+
+       ws.onopen = function(){
+         console.log("open");
+         show("computer");
+       }
+
+       ws.onmessage = function (evt)
+       {
+         show(evt.data);
+       };
+     </script>
+
+
+   </head>
+   <body>
+     <h1 id="recognized">none</h1>
+     <iframe id="ifr" width="100%" height=800px border=0>
+   </body>
+</html>

@@ -20,7 +20,8 @@
     "morgan": "~1.0.0",
     "node-fetch": "^1.7.1",
     "pug": "^2.0.0-rc.2",
-    "request": "*"
+    "request": "*",
+    "ws": "1.1.1"
   },
   "author": "Jitendra",
   "license": ""

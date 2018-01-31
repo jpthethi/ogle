@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var index = require("../../index.js");
 
-
-router.get('/',function(req,res){
-  res.render("main/blank")
+router.get('/fetch',function(req,res){
+  index.broadcast(req.query.obj);
+  res.send({status:"ok"})
 });
 
 
