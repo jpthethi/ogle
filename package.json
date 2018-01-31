@@ -1,0 +1,27 @@
+{
+  "name": "Ogle",
+  "version": "1.0.0",
+  "description": "Ogle",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dist": "node index.js"
+  },
+  "dependencies": {
+    "aes-js": "^3.1.0",
+    "body-parser": "^1.18.2",
+    "errorhandler": "~1.0.0",
+    "express": "~4.0.0",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.4",
+    "log4js": "^1.1.1",
+    "md5": "^2.2.1",
+    "moment": "^2.18.1",
+    "morgan": "~1.0.0",
+    "node-fetch": "^1.7.1",
+    "pug": "^2.0.0-rc.2",
+    "request": "*"
+  },
+  "author": "Jitendra",
+  "license": ""
+}

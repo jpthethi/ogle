@@ -1,0 +1,59 @@
+extends ../layout.pug
+
+block title
+  span #{project.name}
+
+block content
+  h4.header-title.m-t-0.m-b-30 Code Commits
+  include ./codecommits/index
+
+  h4.header-title.m-t-0.m-b-30 Builds
+  include ./builds/index
+
+  h4.header-title.m-t-0.m-b-30 Vulnerability Testing
+  include ./vulnerability_testing/index
+
+  h4.header-title.m-t-0.m-b-30 Functional Testing
+  include ./functional_testing/index
+
+  h4.header-title.m-t-0.m-b-30 Deployment - Test environment
+  include ./deployment_testing/index
+
+  h4.header-title.m-t-0.m-b-30 Deployment - Production environment
+  include ./deployment_production/index
+
+block scriptblock
+  script( src="/plugins/chartist/dist/chartist.min.js")
+  script( src="/plugins/morris/morris.min.js")
+  script( src="/plugins/raphael/raphael-min.js")
+
+  script.
+    $.getJSON("/api/projects/#{project.id}/chart/dailycommits", function(data){
+      new Chartist.Line('#chart-dailycommits', data, {
+        low: 0,
+        showArea: true
+      });
+    })
+
+    $.getJSON("/api/projects/#{project.id}/chart/dailyloc", function(data){
+      new Chartist.Line('#chart-dailyloc', data, {
+        low: 0,
+        showArea: true
+      });
+    })
+
+    new Chartist.Line('#chart-with-area', {
+    labels: [1, 2, 3, 4, 5, 6, 7, 8],
+    series: [
+      [5, 9, 7, 8, 5, 3, 5, 4]
+    ]
+    }, {
+      low: 0,
+      showArea: true
+    });
+
+    $.getJSON("/api/projects/#{project.id}/chart/builds", function(chart_obj){
+      chart_obj.element= 'morris-bar-stacked';
+      console.log(chart_obj)
+      Morris.Bar(chart_obj);
+    })

@@ -1,0 +1,52 @@
+-var types =["manual","automated"]
+each t in types
+  - var last_test = project.functional_testing[t][0]
+  h4.header-title.m-t-0.m-b-30 Metrics - #{t.toUpperCase()} TESTING
+  .row
+    .col-lg-6.col-md-6
+      .row
+        .col-lg-6.col-md-6
+          .widget-simple.text-center.card-box
+            h3.text-success.counter.font-bold.m-t-10 #{project.matrix.test_matrix[t].avg_testing_cycle}
+            p.text-muted.mb-0 Cycle Time Duration (mins)
+        .col-sm-6.col-lg-6
+          .widget-simple-chart.text-right.card-box
+            .circliful-chart(data-dimension='90', data-text=project.matrix.test_matrix[t].success_ratio + "%", data-width='5', data-fontsize='14', data-percent=project.matrix.test_matrix[t].success_ratio, data-fgcolor='#5fbeaa', data-bgcolor='#505A66')
+            h3.text-success.counter.m-t-10 #{last_test.test_cases}
+            p.text-muted.text-nowrap.m-b-10 Tests Cases
+      .row
+        .col-lg-6.col-md-6
+          .widget-simple.text-center.card-box
+            h3.text-primary.font-bold.mt-0 #{moment(last_test.when).format("DD-MMM HH:mm")}
+            p.text-muted.mb-0 Last Test Run
+        .col-sm-6.col-lg-6
+          .widget-simple-chart.text-right.card-box
+            .circliful-chart(data-dimension='90', data-text=last_test.coverage*100+'%', data-width='5', data-fontsize='14', data-percent=last_test.coverage*100, data-fgcolor='#3bafda', data-bgcolor='#505A66')
+            h3.text-primary.m-t-10 Coverage
+            p.text-muted.text-nowrap.m-b-10 &nbsp;
+
+
+    .col-lg-6.col-md-6
+      .row
+        .col-sm-12
+          .card-box
+            h4.m-t-0.header-title
+              b Recent #{t} Test Runs
+            p.text-muted.m-b-30.font-13
+              | All developers All Branches
+            .table-responsive
+              table#mainTable.table.table-striped.m-b-0(style='cursor: pointer;')
+                thead
+                  tr
+                    th Test Run
+                    th Date
+                    th Total Tests
+                    th % Sucess
+                tbody
+                  each test,i in project.functional_testing[t]
+                    if(i<4)
+                      tr
+                        td #{test.name}
+                        td #{moment(test.when).format("DD-MM HH:mm")}
+                        td #{test.test_cases}
+                        td #{Math.ceil(test.test_cases_pass *100 /test.test_cases)}

@@ -1,0 +1,75 @@
+h4.header-title.m-t-0.m-b-30 Metrics / Ratios
+.row
+  .col-sm-6.col-lg-3
+    .widget-simple-chart.text-right.card-box
+      .circliful-chart(data-dimension='90', data-text='35%', data-width='5', data-fontsize='14', data-percent='35', data-fgcolor='#5fbeaa', data-bgcolor='#505A66')
+      h3.text-success.counter.m-t-10 2562
+      p.text-muted.text-nowrap.m-b-10 Build Success Rate
+  .col-sm-6.col-lg-3
+    .widget-simple-chart.text-right.card-box
+      .circliful-chart(data-dimension='90', data-text='75%', data-width='5', data-fontsize='14', data-percent='75', data-fgcolor='#3bafda', data-bgcolor='#505A66')
+      h3.text-primary.counter.m-t-10 5685
+      p.text-muted.text-nowrap.m-b-10 Deployment Success Rate
+  .col-sm-6.col-lg-3
+    .widget-simple-chart.text-right.card-box
+      .circliful-chart(data-dimension='90', data-text='58%', data-width='5', data-fontsize='14', data-percent='58', data-fgcolor='#f76397', data-bgcolor='#505A66')
+      h3.text-pink.m-t-10
+        span.counter 12480
+      p.text-muted.text-nowrap.m-b-10 Bug Fixes Rate
+// end row
+
+.row
+  .col-lg-6
+    .card-box
+      h4.header-title.m-t-0.m-b-30 Last Successful Build
+      div #{moment(project.matrix.lastsuccessfulbuild).fromNow()}
+
+  //.col-lg-6
+  //  table.table.table-bordered.dataTable.no-footer
+  //    each build in project.builds
+  //      tr
+  //        td #{build.name}
+  //        td #{build.when}
+  //        td #{build.complete}
+  //        td #{build.success}
+
+.row
+  .col-lg-6
+    .card-box
+      h4.m-t-0.header-title
+        b Line chart with area
+      p.text-muted.m-b-30.font-13
+        | Example of Horizontal bar chart.
+      #chart-with-area.ct-chart.ct-golden-section
+
+
+.row
+  .col-lg-6
+    .portlet
+      // /primary heading
+      .portlet-heading
+        h3.portlet-title.text-dark  Builds Succes Failure and Duration
+        .portlet-widgets
+          a(href='javascript:;', data-toggle='reload')
+            i.ion-refresh
+          span.divider
+          a(data-toggle='collapse', data-parent='#accordion1', href='#bg-default1')
+            i.ion-minus-round
+          span.divider
+          a(href='#', data-toggle='remove')
+            i.ion-close-round
+        .clearfix
+      #bg-default1.panel-collapse.collapse.show
+        .portlet-body
+          .text-center
+            ul.list-inline.chart-detail-list
+              li.list-inline-item
+                h5
+                  i.fa.fa-circle.m-r-5(style='color: #00ff00;')
+                  | Success
+              li.list-inline-item
+                h5
+                  i.fa.fa-circle.m-r-5(style='color: #ff0000;')
+                  | Failure
+          #morris-bar-stacked(style='height: 300px;')
+    // /Portlet

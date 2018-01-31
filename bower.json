@@ -1,0 +1,24 @@
+{
+  "name": "Ogle",
+  "description": "Second screen for contextual information",
+  "main": "index.js",
+  "authors": [
+    "Jitendra"
+  ],
+  "license": "",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "d3": "^4.9.1",
+    "jquery-ui": "^1.12.1",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+  }
+}

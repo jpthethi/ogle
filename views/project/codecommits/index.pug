@@ -1,0 +1,48 @@
+.row
+  .col-lg-6
+    .card-box
+      h4.m-t-0.header-title
+        b Productivity
+      p.text-muted.m-b-30.font-13
+        | Daily Lines of Code per developer
+      #chart-dailyloc.ct-chart.ct-golden-section
+  .col-lg-6
+    .card-box
+      h4.m-t-0.header-title
+        b Daily Code Commits
+      p.text-muted.m-b-30.font-13
+        | All Branches #{project.teamsize} Developers
+      #chart-dailycommits.ct-chart.ct-golden-section
+
+.row
+  .col-lg-3
+    .card-box
+      h4.header-title.m-t-0.m-b-30 Commit Event Trend1
+
+  .col-lg-3
+    .card-box
+      h4.header-title.m-t-0.m-b-30 Commit Event Trend2
+
+
+  .col-sm-6
+    .card-box
+      h4.m-t-0.header-title
+        b Recent Code Commits
+      p.text-muted.m-b-30.font-13
+        | All developers All Branches
+      .table-responsive
+        table#mainTable.table.table-striped.m-b-0(style='cursor: pointer;')
+          thead
+            tr
+              th Commit
+              th Date
+              th Comment
+              th Person
+          tbody
+            each commit,i in project.commits
+              if(i<6)
+                tr
+                  td #{commit.commitid.substring(0,8)}
+                  td #{moment(commit.when).format("DD-MM HH:mm")}
+                  td #{commit.comment}
+                  td #{commit.person}

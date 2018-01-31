@@ -1,0 +1,9 @@
+extends ../layout.pug
+
+block content
+  table.table.table-bordered.dataTable.no-footer
+    each p,k in projects
+      tr
+        td
+          a(href="/projects/"+k) #{p.name}
+        td #{p.teamsize}
