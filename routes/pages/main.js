@@ -18,7 +18,7 @@ router.post('/upload',function(req,res){
       var fstream = fs.createWriteStream(__dirname + '/../..//public/files/' + latest_file);
       file.pipe(fstream);
       fstream.on('close', function () {
-        console.log("send on socket" + latest_file);
+        console.log("send on socket_" + latest_file);
         index.broadcast(JSON.stringify({"file":latest_file}));
         console.log("done - send on socket" + latest_file);
         res.send({status:"ok"})
