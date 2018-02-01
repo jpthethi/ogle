@@ -20,9 +20,9 @@ router.post('/upload',function(req,res){
       fstream.on('close', function () {
         console.log("send on socket" + latest_file);
         index.broadcast(JSON.stringify({"file":latest_file}));
+        res.send({status:"ok"})
       });
   });
-  res.send({status:"ok"})
 });
 
 module.exports = router;

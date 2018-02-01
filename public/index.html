@@ -3,6 +3,7 @@
      <script src="/plugins/jquery/dist/jquery.min.js"></script>
      <script>
        function show(obj){
+         console.log(obj);
          if(obj.recognized){
            $("#recognized")[0].innerHTML = obj.recognized;
            $("#ifr")[0].src = "https://en.wikipedia.org/wiki/Special:Search?search="+obj.recognized;
