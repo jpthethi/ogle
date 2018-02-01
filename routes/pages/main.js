@@ -6,7 +6,7 @@ var moment = require("moment");
 
 var latest_file = "";
 router.get('/fetch',function(req,res){
-  index.broadcast({"recognized":req.query.obj, "confidence": req.query.confidence});
+  index.broadcast(JSON.stringify({"recognized":req.query.obj, "confidence": "100"}));
   res.send(JSON.stringify({status:"ok"}))
 });
 
@@ -20,6 +20,7 @@ router.post('/upload',function(req,res){
       fstream.on('close', function () {
         console.log("send on socket" + latest_file);
         index.broadcast(JSON.stringify({"file":latest_file}));
+        console.log("done - send on socket" + latest_file);
         res.send({status:"ok"})
       });
   });
