@@ -1,0 +1,25 @@
+html
+  head
+    script(src='/plugins/jquery/dist/jquery.min.js')
+    script(src='/plugins/bootstrap/dist/js/bootstrap.min.js')
+    link(href='/plugins/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet', type='text/css')
+  body
+    table.table
+      thead
+        th Image
+        th Recognized as
+        th Confidence %
+        th When
+        th Recognition time (secs)
+      each h in history
+        tr
+          td
+            img(src="/files/"+h.file)
+          td
+            h3 #{h.recognized}
+          td
+            h3 #{h.confidence} %
+          td
+            h3 #{moment(h.recorded).fromNow()}
+          td
+            h3 #{Math.floor((new Date(h.recorded)-new Date(h.captured))/100)/10} secs
