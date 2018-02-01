@@ -5,8 +5,10 @@ var path = require('path');
 var server = require('http').createServer(app);
 var config = require("./config/environment");
 var bodyParser = require('body-parser')
-var wss = new require('ws').Server({ server: server , path : "/"});
+var wss = new require('ws').Server({ server: server , path : "/", perMessageDeflate: false});
+var busboy = require('connect-busboy');
 
+app.use(busboy());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
