@@ -4,7 +4,7 @@ html
     script(src='/plugins/bootstrap/dist/js/bootstrap.min.js')
     link(href='/plugins/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet', type='text/css')
     style.
-      .captured {width:480px}
+      #captured {width:480px}
   body
     table.table
       thead
@@ -16,7 +16,7 @@ html
       each h in history
         tr
           td
-            img#captured (src="/files/"+h.file)
+            img#captured(src="/files/"+h.file)
           td
             h3 #{h.recognized}
           td
