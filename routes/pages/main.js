@@ -9,7 +9,7 @@ var history = [];
 var current = {}
 
 fs.readFile('./history.json', (err, data) => {
-  if(err) {flush_history(); console.log(err);}
+  if(err) {flush_history();}
   if(data!=undefined) history = JSON.parse(data);
 });
 
