@@ -41,6 +41,7 @@ app.use('/api', apiRouter);
 app.use('/', require('./routes/pages/main'));
 apiRouter.use('/', require('./routes/api/main'));
 
+//Websocket
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
