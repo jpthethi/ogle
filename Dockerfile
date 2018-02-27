@@ -4,7 +4,7 @@ FROM node:boron
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Install app dependencies
+# Install app dependencies from local
 #COPY package.json /usr/src/app/
 
 # Bundle app source
